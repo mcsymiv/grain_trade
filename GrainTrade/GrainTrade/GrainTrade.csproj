@@ -61,6 +61,7 @@
     <Compile Include="PageObjects\HeaderPage\HeaderUserNotAuth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\AuthTest\AuthTest.cs" />
+    <Compile Include="Test\ConfigTestFlow.cs" />
     <Compile Include="Test\HeaderTest\HeaderTest.cs" />
     <Compile Include="Test\MenuTest\MenuTest.cs" />
     <Compile Include="Test\RegistrationTest\RegistrationTest.cs" />
