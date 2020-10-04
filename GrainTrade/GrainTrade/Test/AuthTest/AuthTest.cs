@@ -32,7 +32,7 @@ namespace GrainTrade.Test.AuthTest
             firefox.Manage().Window.Maximize();
             firefox.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
         }
-        [TearDown]
+        [OneTimeTearDown]
         public void CloseChromeWindow()
         {
             firefox.Quit();
@@ -43,6 +43,15 @@ namespace GrainTrade.Test.AuthTest
             headerNotAuthPage.ClickAuthButton();
             authPage.UserSighIn(email, password);
             Assert.AreEqual(myCabinet, headerIsAuthPage.MyCabinetTextVisible());
+        }
+        [TestCase("", "qazWSXedc", "Это обязательное поле!")]
+        [TestCase("vladhluzhin@gmail.com", "", "This field is required!")]
+        public void EmptyFieldErrorOnAuthForm(string email, string password, string expectedErrorMessage)
+        {
+            headerNotAuthPage.ClickAuthButton();
+            authPage.EmailUserEnter(email).PasswordUserEnter(password).SighInButtonClick();
+            Assert.AreEqual(expectedErrorMessage, authPage.GetEmailErrorMessage());
+            Assert.AreEqual(expectedErrorMessage, authPage.GetPasswordErrorMessage());
         }
     }
 }
