@@ -1,13 +1,14 @@
-﻿using OpenQA.Selenium;
+﻿using NUnit.Framework;
 using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 
-namespace GrainTrade
+namespace GrainTrade.Test
 {
-    public class Header
+    [TestFixture]
+    public class HeaderTest
     {
 
     }

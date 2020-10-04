@@ -55,8 +55,11 @@
     </Reference>
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Header.cs" />
+    <Compile Include="PageObjects\Header\Header.cs" />
+    <Compile Include="PageObjects\Header\HeaderUserIsAuth.cs" />
+    <Compile Include="PageObjects\Header\HeaderUserNotAuth.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="Test\HeaderTest.cs" />
   </ItemGroup>
   <ItemGroup>
     <None Include="packages.config" />
