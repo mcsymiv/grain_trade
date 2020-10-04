@@ -15,7 +15,7 @@ namespace GrainTrade.PageObjects
             this._driver = driver;
         }
 
-        By _signIn = By.XPath("/html/body/noindex/div/div[1]/div[1]/div[4]/div[2]/div/div/a");
+        By _signIn = By.CssSelector("html body noindex div#app.page-wrap div.page-layout.without-padding-top div.header.transparent div.container div.cabinet-links div.auth-wrap div.button.transparent.login-btn");
         public void ClickAuthButton()
         {
             _driver.FindElement(_signIn).Click();
