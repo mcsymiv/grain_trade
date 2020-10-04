@@ -30,7 +30,17 @@ namespace GrainTrade.PageObjects.AuthPage
             _driver.FindElement(_sighInButton).Click();
             return this;
         }
-        public void RegistrationbuttonClick()
+        public AuthPage EmailUserEnter(string email)
+        {
+            _driver.FindElement(_email).SendKeys(email);
+            return this;
+        }
+        public AuthPage PasswordUserEnter(string password)
+        {
+            _driver.FindElement(_password).SendKeys(password);
+            return this;
+        }
+        public void SighInButtonClick()
         {
             _driver.FindElement(_registrationLink).Click();
         }

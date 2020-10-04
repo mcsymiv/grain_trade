@@ -29,5 +29,9 @@ namespace GrainTrade.PageObjects
         {
             _driver.FindElement(_myProposal).Click();
         }
+        public string MyCabinetTextVisible()
+        {
+            return _driver.FindElement(_myCabinet).Text;
+        }
     }
 }
