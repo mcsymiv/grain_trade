@@ -22,7 +22,7 @@ namespace GrainTrade.PageObjects.AuthPage
         By _registrationLink = By.CssSelector("html body.no-scroll noindex div#app.page-wrap div.modal-window-wrap.auth-modal div.modal-window-content div.modal-window-body.ps-container.ps-theme-default div.login-form-wrap div.links-block div.registration-block a.registration");
         By _authFormTitle = By.CssSelector("html body.no-scroll noindex div#app.page-wrap div.modal-window-wrap.auth-modal div.modal-window-content div.modal-window-header div.title");
 
-        By _emailError = By.CssSelector("html body.no-scroll noindex div#app.page-wrap div.modal-window-wrap.auth-modal div.modal-window-content div.modal-window-body.ps-container.ps-theme-default div.login-form-wrap div.vue-form-generator fieldset div.form-group.error.required.field-input div.errors.help-block span");
+        By _emailError = By.XPath("/html/body/noindex/div/div[5]/div[3]/div[2]/div[1]/div[1]/fieldset/div[1]/div[2]/span");
         By _passwordError = By.XPath("/html/body/noindex/div/div[5]/div[3]/div[2]/div[1]/div[1]/fieldset/div[2]/div[2]/span");
 
         public AuthPage UserSighIn(string email, string password)

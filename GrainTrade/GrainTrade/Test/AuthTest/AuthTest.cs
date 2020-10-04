@@ -46,12 +46,14 @@ namespace GrainTrade.Test.AuthTest
         }
         [TestCase("", "qazWSXedc", "Это обязательное поле!")]
         [TestCase("vladhluzhin@gmail.com", "", "This field is required!")]
+        [TestCase("test@gmail.com", "qazWSXedc", "Неверный e-mail")]
         public void EmptyFieldErrorOnAuthForm(string email, string password, string expectedErrorMessage)
         {
             headerNotAuthPage.ClickAuthButton();
             authPage.EmailUserEnter(email).PasswordUserEnter(password).SighInButtonClick();
             Assert.AreEqual(expectedErrorMessage, authPage.GetEmailErrorMessage());
             Assert.AreEqual(expectedErrorMessage, authPage.GetPasswordErrorMessage());
+            Assert.AreEqual(expectedErrorMessage, authPage.GetEmailErrorMessage());
         }
     }
 }
