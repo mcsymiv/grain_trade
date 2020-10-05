@@ -16,8 +16,8 @@ namespace GrainTrade.Test
     [TestFixture]
     public class HeaderTest
     {
-        IWebDriver chrome = new ChromeDriver(@"C:\Users\mcsymiv\Desktop\git\chromedriver_win32");
         // IWebDriver firefox = new FirefoxDriver(@"C:\Users\mcsymiv\Desktop\git\geckodriver-v0.27.0-win64");
+        IWebDriver chrome;
         HeaderUserNotAuth headerPage;
         AuthPage authPage;
         ConfigTestFlow config;
@@ -25,6 +25,7 @@ namespace GrainTrade.Test
         [SetUp]
         public void OpenGrainTradePage()
         {
+            chrome = new ChromeDriver(@"C:\Users\mcsymiv\Desktop\git\chromedriver_win32");
             headerPage = new HeaderUserNotAuth(chrome);
             authPage = new AuthPage(chrome);
             config = new ConfigTestFlow(chrome);
@@ -45,6 +46,32 @@ namespace GrainTrade.Test
             headerPage.ClickAuthButton();
             String authTitle = authPage.GetAuthFormTitle();
             Assert.AreEqual(expectedFormTitle, authTitle);
+        }
+        [TestCase(1, "Біржа зерна Online")]
+        [TestCase(2, "Новини")]
+        [TestCase(3, "Ціни на зерно")]
+        public void HeaderLinksCheck(int link, string expectedTitle)
+        {
+            string actualTitle = string.Empty;
+            switch (link)
+            {
+                case 1:
+                    actualTitle = headerPage
+                        .ClickOnHeaderLink(headerPage.ExchangeLink)
+                        .GetPageTitle(headerPage.ExchangePageTitle);
+                    break;
+                case 2:
+                    actualTitle = headerPage
+                        .ClickOnHeaderLink(headerPage.NewsLink)
+                        .GetPageTitle(headerPage.NewsPageTitle);
+                    break;
+                case 3:
+                    actualTitle = headerPage
+                        .ClickOnHeaderLink(headerPage.PriceLink)
+                        .GetPageTitle(headerPage.PricePageTitle);
+                    break;
+            }
+            Assert.AreEqual(expectedTitle, actualTitle);
         }
     }
 }
