@@ -59,6 +59,7 @@
     <Compile Include="PageObjects\HeaderPage\Header.cs" />
     <Compile Include="PageObjects\HeaderPage\HeaderUserIsAuth.cs" />
     <Compile Include="PageObjects\HeaderPage\HeaderUserNotAuth.cs" />
+    <Compile Include="PageObjects\LeftMenuPage\LeftMenuPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\AuthTest\AuthTest.cs" />
     <Compile Include="Test\ConfigTestFlow.cs" />
