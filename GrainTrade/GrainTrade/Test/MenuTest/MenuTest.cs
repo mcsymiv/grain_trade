@@ -54,47 +54,42 @@ namespace GrainTrade.Test.MenuTest
             {
                 case 1:
                     actualTitle = menuPage
-                        .MenuLinkClick(menuPage.Exchange)
+                        .ClickLinkInSlideMenu(menuPage.Exchange)
                         .GetElementTitle(menuPage.ExchangeTitle);
                     break;
                 case 2:
                     actualTitle = menuPage
-                        .MenuLinkClick(menuPage.News)
+                        .ClickLinkInSlideMenu(menuPage.News)
                         .GetElementTitle(menuPage.NewsTitle);
                     break;
                 case 3:
                     actualTitle = menuPage
-                        .MenuLinkClick(menuPage.Prices)
+                        .ClickLinkInSlideMenu(menuPage.Prices)
                         .GetElementTitle(menuPage.PriceTitle);
                     break;
                 case 4:
                     actualTitle = menuPage
-                        .MenuLinkClick(menuPage.Stats)
+                        .ClickLinkInSlideMenu(menuPage.Stats)
                         .GetElementTitle(menuPage.StatsTitle);
                     break;
                 case 5:
                     actualTitle = menuPage
-                        .MenuLinkClick(menuPage.Map)
+                        .ClickLinkInSlideMenu(menuPage.Map)
                         .GetElementTitle(menuPage.MapTitle);
                     break;
                 case 6:
                     actualTitle = menuPage
-                        .MenuLinkClick(menuPage.Traiders)
+                        .ClickLinkInSlideMenu(menuPage.Traiders)
                         .GetElementTitle(menuPage.TraidersPageTitle);
                     break;
                 case 7:
                     actualTitle = menuPage
-                        .MenuLinkClick(menuPage.Manufacturers)
+                        .ClickLinkInSlideMenu(menuPage.Manufacturers)
                         .GetElementTitle(menuPage.ManufacturersPageTitle);
                     break;
                 case 8:
                     actualTitle = menuPage
-                        .MenuLinkClick(menuPage.Manufacturers)
-                        .GetElementTitle(menuPage.ManufacturersPageTitle);
-                    break;
-                case 9:
-                    actualTitle = menuPage
-                        .MenuLinkClick(menuPage.Elevators)
+                        .ClickLinkInSlideMenu(menuPage.Elevators)
                         .GetElementTitle(menuPage.ElevatorsPageTitle);
                     break;
             }

@@ -61,6 +61,7 @@
     <Compile Include="PageObjects\HeaderPage\HeaderUserIsAuth.cs" />
     <Compile Include="PageObjects\HeaderPage\HeaderUserNotAuth.cs" />
     <Compile Include="PageObjects\LeftMenuPage\LeftMenuPage.cs" />
+    <Compile Include="PageObjects\NewsPage\NewsPage.cs" />
     <Compile Include="PageObjects\Registration\RegistrationFirstStepPage.cs" />
     <Compile Include="PageObjects\Registration\RegistrationSecondStepPage.cs" />
     <Compile Include="PageObjects\Registration\RegistrationThirdStepPage.cs" />

@@ -33,7 +33,7 @@ namespace GrainTrade.Test
             chrome.Navigate().GoToUrl("https://dev.graintrade.com.ua");
             config.Refresh();
             chrome.Manage().Window.Maximize();
-            chrome.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            chrome.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(10);
         }
         [TearDown]
         public void CloseChromeWindow()
@@ -57,17 +57,17 @@ namespace GrainTrade.Test
             {
                 case 1:
                     actualTitle = headerPage
-                        .ClickOnHeaderLink(headerPage.ExchangeLink)
+                        .ClickOnHeaderLinkAction(headerPage.ExchangeLink)
                         .GetPageTitle(headerPage.ExchangePageTitle);
                     break;
                 case 2:
                     actualTitle = headerPage
-                        .ClickOnHeaderLink(headerPage.NewsLink)
+                        .ClickOnHeaderLinkAction(headerPage.NewsLink)
                         .GetPageTitle(headerPage.NewsPageTitle);
                     break;
                 case 3:
                     actualTitle = headerPage
-                        .ClickOnHeaderLink(headerPage.PriceLink)
+                        .ClickOnHeaderLinkAction(headerPage.PriceLink)
                         .GetPageTitle(headerPage.PricePageTitle);
                     break;
             }
