@@ -4,6 +4,7 @@ using NUnit.Framework;
 using OpenQA.Selenium;
 using OpenQA.Selenium.Chrome;
 using OpenQA.Selenium.Firefox;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -15,27 +16,33 @@ namespace GrainTrade.Test.AuthTest
     [TestFixture]
     public class AuthTest
     {
-        // IWebDriver chrome = new ChromeDriver(@"C:\Users\mcsymiv\Desktop\git\chromedriver_win32");
-        IWebDriver firefox = new FirefoxDriver(@"C:\Users\mcsymiv\Desktop\git\geckodriver-v0.27.0-win64");
+        // IWebDriver firefox = new FirefoxDriver(@"C:\Users\mcsymiv\Desktop\git\geckodriver-v0.27.0-win64");
+        IWebDriver chrome;
+        WebDriverWait wait;
         HeaderUserNotAuth headerNotAuthPage;
         HeaderUserIsAuth headerIsAuthPage;
         AuthPage authPage;
+        ConfigTestFlow config;
 
         [SetUp]
         public void OpenGrainTradePage()
         {
-            headerNotAuthPage = new HeaderUserNotAuth(firefox);
-            headerIsAuthPage = new HeaderUserIsAuth(firefox);
-            authPage = new AuthPage(firefox);
+            chrome = new ChromeDriver(@"C:\Users\mcsymiv\Desktop\git\chromedriver_win32");
+            wait = new WebDriverWait(chrome, TimeSpan.FromSeconds(10));
+            headerNotAuthPage = new HeaderUserNotAuth(chrome);
+            headerIsAuthPage = new HeaderUserIsAuth(chrome);
+            authPage = new AuthPage(chrome);
+            config = new ConfigTestFlow(chrome);
 
-            firefox.Navigate().GoToUrl("https://dev.graintrade.com.ua");
-            firefox.Manage().Window.Maximize();
-            firefox.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(5);
+            chrome.Navigate().GoToUrl("https://dev.graintrade.com.ua");
+            config.Refresh();
+            chrome.Manage().Window.Maximize();
+            chrome.Manage().Timeouts().ImplicitWait = TimeSpan.FromSeconds(30);
         }
-        [OneTimeTearDown]
+        [TearDown]
         public void CloseChromeWindow()
         {
-            firefox.Quit();
+            chrome.Quit();
         }
         [TestCase("vladhluzhin@gmail.com", "qazWSXedc", "Мій кабінет")]
         public void SuccessfulUserAuth(string email, string password, string myCabinet)
@@ -45,15 +52,30 @@ namespace GrainTrade.Test.AuthTest
             Assert.AreEqual(myCabinet, headerIsAuthPage.MyCabinetTextVisible());
         }
         [TestCase("", "qazWSXedc", "Это обязательное поле!")]
-        [TestCase("vladhluzhin@gmail.com", "", "This field is required!")]
-        [TestCase("test@gmail.com", "qazWSXedc", "Неверный e-mail")]
-        public void EmptyFieldErrorOnAuthForm(string email, string password, string expectedErrorMessage)
+        [TestCase("vladhluzhin@gmail.com", "", "Это обязательное поле!")]
+        [TestCase("vladhluzhin@gmail.com", "12", "Это обязательное поле!")]
+        public void InvalidAuthFieldInputErrors(string email, string password, string expectedErrorMessage)
         {
             headerNotAuthPage.ClickAuthButton();
-            authPage.EmailUserEnter(email).PasswordUserEnter(password).SighInButtonClick();
-            Assert.AreEqual(expectedErrorMessage, authPage.GetEmailErrorMessage());
-            Assert.AreEqual(expectedErrorMessage, authPage.GetPasswordErrorMessage());
-            Assert.AreEqual(expectedErrorMessage, authPage.GetEmailErrorMessage());
+
+            if (email.Length != 0)
+            {
+                authPage
+                    .ClickOnEmailField()
+                    .EmailUserEnter(email)
+                    .SighInButtonClick();
+                String passwordError = wait.Until(e => e.FindElement(authPage.PasswordError)).Text;
+                Assert.AreEqual(expectedErrorMessage, passwordError);
+            }
+            else
+            {
+                authPage
+                    .ClickOnPasswordField()
+                    .PasswordUserEnter(password)
+                    .SighInButtonClick();
+                String emailErrorText = wait.Until(e => e.FindElement(authPage.EmailError)).Text;
+                Assert.AreEqual(expectedErrorMessage, emailErrorText);
+            }
         }
     }
 }

@@ -19,12 +19,12 @@ namespace GrainTrade.PageObjects.AuthPage
 
         By _email = By.Id("login");
         By _password = By.Id("password");
-        By _sighInButton = By.CssSelector("html body.no-scroll noindex div#app.page-wrap div.modal-window-wrap.auth-modal div.modal-window-content div.modal-window-body.ps-container.ps-theme-default div.login-form-wrap div.vue-form-generator fieldset div.form-group.field-submit div.field-wrap input");
+        By _sighInButton = By.XPath("/html/body/noindex/div/div[5]/div[3]/div[2]/div[1]/div[1]/fieldset/div[3]/div");
         By _registrationLink = By.CssSelector("html body.no-scroll noindex div#app.page-wrap div.modal-window-wrap.auth-modal div.modal-window-content div.modal-window-body.ps-container.ps-theme-default div.login-form-wrap div.links-block div.registration-block a.registration");
-        By _authFormTitle = By.CssSelector("html body.no-scroll noindex div#app.page-wrap div.modal-window-wrap.auth-modal div.modal-window-content div.modal-window-header div.title");
+        By _authFormTitle = By.XPath("/html/body/noindex/div/div[5]/div[3]/div[1]/div");
 
-        By _emailError = By.XPath("/html/body/noindex/div/div[5]/div[3]/div[2]/div[1]/div[1]/fieldset/div[1]/div[2]/span");
-        By _passwordError = By.XPath("/html/body/noindex/div/div[5]/div[3]/div[2]/div[1]/div[1]/fieldset/div[2]/div[2]/span");
+        public By EmailError = By.XPath("/html/body/noindex/div/div[5]/div[3]/div[2]/div[1]/div[1]/fieldset/div[1]/div[2]/span");
+        public By PasswordError = By.XPath("/html/body/noindex/div/div[5]/div[3]/div[2]/div[1]/div[1]/fieldset/div[2]/div[2]/span");
 
         public AuthPage UserSighIn(string email, string password)
         {
@@ -43,22 +43,24 @@ namespace GrainTrade.PageObjects.AuthPage
             _driver.FindElement(_password).SendKeys(password);
             return this;
         }
-        public void SighInButtonClick()
+        public AuthPage SighInButtonClick()
         {
             _driver.FindElement(_sighInButton).Click();
+            return this;
         }
-
         public string GetAuthFormTitle()
         {
             return _driver.FindElement(_authFormTitle).Text;
         }
-        public string GetEmailErrorMessage()
+        public AuthPage ClickOnEmailField()
         {
-            return _driver.FindElement(_emailError).Text;
+            _driver.FindElement(_email).Click();
+            return this;
         }
-        public string GetPasswordErrorMessage()
+        public AuthPage ClickOnPasswordField()
         {
-            return _driver.FindElement(_emailError).Text;
+            _driver.FindElement(_password).Click();
+            return this;
         }
     }
 }

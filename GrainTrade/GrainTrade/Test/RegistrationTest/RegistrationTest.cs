@@ -10,5 +10,6 @@ namespace GrainTrade.Test.RegistrationTest
     [TestFixture]
     public class RegistrationTest
     {
+
     }
 }

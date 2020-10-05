@@ -20,5 +20,10 @@ namespace GrainTrade.Test
             _driver.FindElement(By.CssSelector("#proceed-link")).Click();
             return this;
         }
+        public ConfigTestFlow Refresh()
+        {
+            _driver.Navigate().Refresh();
+            return this;
+        }
     }
 }
