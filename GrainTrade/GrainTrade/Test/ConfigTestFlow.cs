@@ -14,11 +14,14 @@ namespace GrainTrade.Test
         {
             this._driver = driver;
         }
-        public ConfigTestFlow PassChromeSecurityWindow()
+        public void PassChromeSecurityWindow()
         {
             _driver.FindElement(By.XPath("/html/body/div/div[2]/button[3]")).Click();
             _driver.FindElement(By.CssSelector("#proceed-link")).Click();
-            return this;
+        }
+        public void Refresh()
+        {
+            _driver.Navigate().Refresh();
         }
     }
 }

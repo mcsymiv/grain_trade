@@ -1,5 +1,6 @@
 ﻿using OpenQA.Selenium;
 using OpenQA.Selenium.Interactions;
+using OpenQA.Selenium.Support.UI;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -28,6 +29,10 @@ namespace GrainTrade.PageObjects
         public void MyProposalClick()
         {
             _driver.FindElement(_myProposal).Click();
+        }
+        public string MyCabinetTextVisible()
+        {
+            return _driver.FindElement(_myCabinet).Text;
         }
     }
 }

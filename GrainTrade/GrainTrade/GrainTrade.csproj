@@ -56,9 +56,15 @@
   </ItemGroup>
   <ItemGroup>
     <Compile Include="PageObjects\AuthPage\AuthPage.cs" />
+    <Compile Include="PageObjects\Footer\FooterPage.cs" />
     <Compile Include="PageObjects\HeaderPage\Header.cs" />
     <Compile Include="PageObjects\HeaderPage\HeaderUserIsAuth.cs" />
     <Compile Include="PageObjects\HeaderPage\HeaderUserNotAuth.cs" />
+    <Compile Include="PageObjects\LeftMenuPage\LeftMenuPage.cs" />
+    <Compile Include="PageObjects\NewsPage\NewsPage.cs" />
+    <Compile Include="PageObjects\Registration\RegistrationFirstStepPage.cs" />
+    <Compile Include="PageObjects\Registration\RegistrationSecondStepPage.cs" />
+    <Compile Include="PageObjects\Registration\RegistrationThirdStepPage.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Test\AuthTest\AuthTest.cs" />
     <Compile Include="Test\ConfigTestFlow.cs" />
@@ -69,9 +75,7 @@
   <ItemGroup>
     <None Include="packages.config" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="PageObjects\MenuPage\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <Content Include="..\packages\Selenium.Mozilla.Firefox.Webdriver.0.6.0.1\driver\wires-0.6.0-win.exe">
       <Link>wires-0.6.0-win.exe</Link>
