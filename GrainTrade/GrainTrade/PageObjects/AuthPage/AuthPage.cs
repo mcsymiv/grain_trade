@@ -48,6 +48,11 @@ namespace GrainTrade.PageObjects.AuthPage
             _driver.FindElement(_sighInButton).Click();
             return this;
         }
+        public AuthPage ClickOnRegister()
+        {
+            _driver.FindElement(_registrationLink).Click();
+            return this;
+        }
         public string GetAuthFormTitle()
         {
             return _driver.FindElement(_authFormTitle).Text;
